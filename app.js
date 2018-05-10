@@ -3,7 +3,7 @@ const app = express();
 const router = express.Router();
 const port = 3000;
 
-
+var lastId = 1;
 var todoList = {
             data:[
                 {
@@ -20,6 +20,17 @@ var todoList = {
 app.get('/', (request, response) => {
     var output = JSON.stringify(todoList);
     response.send(`Data dump ${output}`)
+});
+
+// test
+app.get('/increase/', (request, response) => {
+    lastId++;
+    var item = {
+        "id":lastId,
+        "message":'last message'
+    }
+    todoList['data'].push(item);
+    response.send(`added`)
 });
 
 // all routes prefixed with /api
