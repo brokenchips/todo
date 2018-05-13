@@ -1,104 +1,86 @@
 import React, { Component } from 'react';
 
-class Form extends Component 
-{
-    constructor(props)
-    {
-        super(props);
+class Form extends Component {
 
-        this.state = 
-        {
+    constructor(props) {
+        super(props);
+        this.state = {
             messageErrorClass: '',
             formValidate: false
         };
-
         this.inputMessage = React.createRef();
-
         this.formValidate = this.formValidate.bind(this);
-        this.handleButtonClick = this.handleButtonClick.bind(this);
     }
 
     /**
-     * @desc NavigationButton component handler: it pass che button value to parent handler.
-     * @param {string} value 
+     * @desc Form reset: brings form back to initial state.
      */
-    handleButtonClick(event)
-    {
-        if( event.target.value === 'UncontrolledForm' )
-        {
-            this.setState({
-                formValidate: false
-            });
-        }
-        else
-        {
-            this.props.onElementClick(event);
-        }
+    formReset() {
+        this.setState({
+            messageErrorClass: '',
+            formValidate: false
+        });
     }
 
     /**
-     * @desc Form validator: if the submitted values are correct, this function validate the form.
+     * @desc Form validator: checks form input and.
      * @param {object} event 
      */
-    formValidate(event)
-    {
-
-        if( this.inputMessage.current.value === '' )
-        {
+    formValidate(event) {
+        if( this.inputMessage.current.value === '' ) {
             this.setState({
-                messageErrorClass: 'input-error',
+                messageErrorClass: 'mandatory-field-error',
                 formValidate: false
             });
-        }
-        else
-        {
+        } else {
             this.setState({
                 messageErrorClass: '',
                 formValidate: true
             });
-            debugger;
-
             this.props.setMessage(this.inputMessage.current.value);
         }
-
         event.preventDefault();
-
-
     }
 
-    render()
-    {
-        if( this.state.formValidate )
-        {
+    render() {
+        if( this.state.formValidate ) {
             return (
                 <React.Fragment>
-                    <p>Form completed successfully</p>
+                    <div className="thankyou">
+                        <p>Todo salvato</p>
+                        <p>
+                            <br />
+                            <input type="submit" value="BACK" autoFocus onClick={this.formReset.bind(this)} />
+                        </p>
+                    </div>
                 </React.Fragment>
             );
-        }
-        else
-        {
+        } else {
             return (
                 <React.Fragment>
-                    <hr />
-                    <h4>ADD TODO</h4>
                     <form name="todoForm" onSubmit={this.formValidate}>
                         <p>
-                            <label>Message* </label>
-                            <input type="text" 
+                            <label>Testo del todo* </label><br /><br />
+                            <input
+                                type="text" 
                                 name="form"
                                 className={this.state.messageErrorClass}
-                                ref={this.inputMessage} />
+                                ref={this.inputMessage}
+                                onChange={this.checkinput}
+                                autoFocus />
                         </p>
                         <p>
-                            <input type="submit" value="SAVE" />
+                            <br />
+                            <input
+                                type="submit"
+                                value="Salva" />
                         </p>
                     </form>
-                    
                 </React.Fragment>
             );
         }
     }
+
 }
 
 export default Form;

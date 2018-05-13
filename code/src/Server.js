@@ -34,15 +34,17 @@ var pushTodo = function(message){
     
 };
 
-App.get('/app', (req, res) => {
-                res.sendFile(Path.join(__dirname + '/index.html'));
-});
 App.use(cors());
+App.use(Parser.urlencoded({ extended: true }));
+
 App.get('/data', (req, res) => {
     console.log(`data requested ${port}`)
-    var output = JSON.stringify(todoList);
     res.set('Content-Type', 'application/json');
-    res.send(todoList)
+    var response = {
+        status : "OK",
+        todo: todoList 
+    };
+    res.send(response)
 });
 
 App.get('/increase/', (req, res) => {
@@ -51,15 +53,17 @@ App.get('/increase/', (req, res) => {
     res.send(`added message: ` + message)
 });
 
-App.use(Parser.json()); // support json encoded bodies
-App.use(Parser.urlencoded({ extended: true })); // support encoded bodies
-
 App.post('/save', (req, res) => {
-    
-    var message = req.body.message;
-    pushTodo(message);
-    console.log(message);
-    res.json({message: `Data saved ${message}`});
+
+    if (req.body && req.body.message && req.body.message!='') {
+        var message = unescape(req.body.message);
+        pushTodo(message);
+        console.log("Recieved a new message: " + message);
+        res.json({status : 'OK' , message: `Data saved ${message}`});
+    } else {
+        res.json({status : 'Fail' , message: `ERROR! Data not saved - Try again later`});
+    }
+
 });
 
 App.listen(port, () => console.log(`Listening on port ${port}`));

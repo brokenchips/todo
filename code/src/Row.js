@@ -1,22 +1,13 @@
 import React, { Component } from 'react';
 
 class todoRow extends Component {
-
-  componentDidMount(){
-  //  alert('row mounted');
-  }
-
-  render() {
-
-    //  let pio=['ciao','ciao2'];
-    //  pio.map(label => alert(label));
-      
+  render() {      
     return (
-      <div className="todoTable">
-        <p className="">
+      <li className="todoRow">
+        <div className="todo">
           {this.props.message}
-        </p>
-      </div>
+        </div>
+      </li>
     );
   }
 }
