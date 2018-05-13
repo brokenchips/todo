@@ -10,7 +10,7 @@ per testare il progetto è necessario avere installato nodejs
 
 - installare le dipendenze e creare la build
 
-  > npm install
+  > npm install<br />
   > npm run build
 
 - avviare il backend
