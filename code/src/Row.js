@@ -14,7 +14,7 @@ class todoRow extends Component {
     return (
       <div className="todoTable">
         <p className="">
-          row content here
+          {this.props.message}
         </p>
       </div>
     );

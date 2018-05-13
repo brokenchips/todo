@@ -9,19 +9,16 @@ class todoTable extends Component {
 
   render() {
     var rows = [];
-    //  looppare le righe
-    //  let pio=['ciao','ciao2'];
-    //  pio.map(label => alert(label));
     this.props.todos.map(item => {
         debugger;
-        var markup = <div>{item.message}</div>;
-        rows.push(markup);
+        var markup = <Row
+        message = {item.message} />;
+        return rows.push(markup);
     });
 
 return (
     <div className="todoTable">
         {rows}
-        <Row />
     </div>
     );
   }

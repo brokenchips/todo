@@ -2,6 +2,10 @@ const Express = require('express');
 const App = Express();
 const Router = Express.Router();
 const Path = require('path');
+var Parser = require('body-parser');
+
+
+
 var cors = require('cors');
 
 const port = 3333;
@@ -19,6 +23,17 @@ var todoList = {
           }
           ]
  };
+
+var pushTodo = function(message){
+    lastId++;
+    var item = {
+        "id":lastId,
+        "message":message
+    }
+    todoList['data'].push(item);
+    
+};
+
 App.get('/app', (req, res) => {
                 res.sendFile(Path.join(__dirname + '/index.html'));
 });
@@ -31,21 +46,20 @@ App.get('/data', (req, res) => {
 });
 
 App.get('/increase/', (req, res) => {
-    lastId++;
-    var item = {
-        "id":lastId,
-        "message":'last message'
-    }
-    todoList['data'].push(item);
-    res.send(`added`)
+    var message = 'last message';
+    pushTodo(message);
+    res.send(`added message: ` + message)
 });
 
-App.use('/api', Router);
+App.use(Parser.json()); // support json encoded bodies
+App.use(Parser.urlencoded({ extended: true })); // support encoded bodies
 
-Router.post('/', (req, res) => {
-    console.log(request)
-    var output = "";
-    res.json({message: `Data saved ${output}`});
+App.post('/save', (req, res) => {
+    
+    var message = req.body.message;
+    pushTodo(message);
+    console.log(message);
+    res.json({message: `Data saved ${message}`});
 });
 
 App.listen(port, () => console.log(`Listening on port ${port}`));
