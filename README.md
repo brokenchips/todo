@@ -54,16 +54,17 @@ example response:
 {
 	"status": "OK",
   "todo": {
-		"data":[
-			{
-				"id": 0,
-				"message": "Todo #1 text"
-			},
-			{
-				"id": 1,
-				"message": "Todo #2 text"
-			}]
-	}
+    "data":[
+      {
+        "id": 0,
+        "message": "Todo #1 text"
+      },
+      {
+        "id": 1,
+        "message": "Todo #2 text"
+      }
+    ]
+  }
 }
 </pre>
 
