@@ -52,7 +52,7 @@ http://localhost:3333/data/
 example response: 
 <pre>
 {
-	"status": "OK",
+  "status": "OK",
   "todo": {
     "data":[
       {
@@ -83,6 +83,6 @@ message=test%20message
 
 example response: 
 {
-	"status":"OK",
-	"message":"Data saved test message"
+  "status":"OK",
+  "message":"Data saved test message"
 }
