@@ -21,6 +21,9 @@ var todoList = {
           ]
  };
 
+/**
+* @desc Push to do: increments todo index and todo content is added to list with correct id.
+*/
 var pushTodo = function(message){
     lastId++;
     var item = {
@@ -57,4 +60,4 @@ App.post('/save', (req, res) => {
     }
 });
 
-App.listen(port, () => console.log(`Listening on port ${port}`));
+App.listen(port, () => console.log(`Server started - Listening on port ${port}`));

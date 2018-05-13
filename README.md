@@ -1,47 +1,51 @@
 README
 
+Istruzioni
+per testare il progetto è necessario avere installato nodejs
 
+
+- scaricare il progetto
+
+  > git clone https://github.com/brokenchips/todo.git
+
+- installare le dipendenze e creare la build
+
+  > npm install
+  > npm run build
+
+- avviare il backend
+
+  > node src/Server.js
+
+- da un secondo terminale installare e/o avviare il server web del frontend (esempio con http-server) con / sulla cartella build
+
+  > npm install http-server -g
+  > http-server ./build
+
+- navigare a http://127.0.0.1:8080/ (o al vostro solito indirizzo:porta se avete usato un server diverso)
 
 
 /***
-
 FRONTEND
-
 ***/
 
+il progetto è bootstrappato con create-react-app
 
-
-
-
-Per avviare il server di sviluppo eseguire:
-
-  > npm start
-
-
-
-
-
+> npm install -g create-react-app
 
 /***
-
 BACKEND
-
 ***/
 
-
-
-
-
-Per avviare il server di backend eseguire:
+il server è in code/Server.js
+Una volta lanciato con:
 
   > node Server.js
 
-Si metterà inascolto sulla porta 3333
+resterà in ascolto sulla porta 3333
 
 
-*******
 * GET *
-*******
 
 non richiede parametri
 restituisce uno status di esito ed un oggetto contenente i dati riguardanti il servizio
@@ -67,9 +71,8 @@ example response:
 }
 </pre>
 
-********
+
 * POST *
-********
 
 riceve un parametro "message" che contiene testo encodato
 restituisce uno status di esito ed un messaggio di dettaglio riguardante l'operazione di salvataggio

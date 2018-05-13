@@ -36,7 +36,7 @@ class App extends Component {
 				}
 			}).then(response => {
 				if (response.ok) {
-          return response.text();
+                    return response.text();
 				} else {
 					throw new Error('Si è verificato un problema con la richiesta');
 				}
@@ -61,7 +61,7 @@ class App extends Component {
 	
 	/**
   * @desc Create Message: saves a new todo.
-  * @return boolean success.
+  * @return promise.
   */
  createMessage = function(message){
 		  var _message = escape(message);
@@ -102,8 +102,8 @@ class App extends Component {
 				<div className="App">
 				<div className="error">
 					Al momento il web service non è disponibile.<br />
-          Verifica che il server sia correttamente avviato e prova a ricaricare la pagina.<br /><br />
-          Se il server non è avviato:<br />
+                    Verifica che il server sia correttamente avviato e prova a ricaricare la pagina.<br /><br />
+                    Se il server non è avviato:<br />
 					<br />
 					1.<br />entra nella cartella "src"<br /><br />
 					2.<br />esegui il comando: <code> node Server.js </code><br /><br />
