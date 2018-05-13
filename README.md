@@ -50,6 +50,7 @@ url:
 http://localhost:3333/data/
 
 example response: 
+<pre>
 {
 	"status": "OK",
   "todo": {
@@ -64,7 +65,7 @@ example response:
 			}]
 	}
 }
-
+</pre>
 
 ********
 * POST *
