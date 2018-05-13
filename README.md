@@ -19,7 +19,7 @@ per testare il progetto è necessario avere installato nodejs
 
 - da un secondo terminale installare e/o avviare il server web del frontend (esempio con http-server) con / sulla cartella build
 
-  > npm install http-server -g
+  > npm install http-server -g<br />
   > http-server ./build
 
 - navigare a http://127.0.0.1:8080/ (o al vostro solito indirizzo:porta se avete usato un server diverso)
