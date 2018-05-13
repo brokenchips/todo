@@ -7,19 +7,19 @@ const cors = require('cors');
 const port = 3333;
 
 // APP DATA
-var lastId = 1;
 var todoList = {
      data:[
           {
             "id":0,
-            "message":"Ricordati di dormire"
+            "message":"Thing to do #1"
           },
           {
             "id":1,
-            "message":"Ricordati di mangiare"
+            "message":"Thing to do #2"
           }
           ]
  };
+ var lastId = todoList.data.length-1;
 
 /**
 * @desc Push to do: increments todo index and todo content is added to list with correct id.

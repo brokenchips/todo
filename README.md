@@ -22,7 +22,7 @@ per testare il progetto è necessario avere installato nodejs
   > npm install http-server -g<br />
   > http-server ./build
 
-- navigare a http://127.0.0.1:8080/ (o al vostro solito indirizzo:porta se avete usato un server diverso)
+- navigare a http://127.0.0.1:8080/ (o a http://localhost:8080/, o al vostro solito indirizzo:porta se avete usato un server diverso)
 
 
 /***
@@ -45,7 +45,7 @@ Una volta lanciato con:
 resterà in ascolto sulla porta 3333
 
 
-* GET *
+* GET
 
 non richiede parametri
 restituisce uno status di esito ed un oggetto contenente i dati riguardanti il servizio
@@ -72,7 +72,7 @@ example response:
 </pre>
 
 
-* POST *
+* POST
 
 riceve un parametro "message" che contiene testo encodato
 restituisce uno status di esito ed un messaggio di dettaglio riguardante l'operazione di salvataggio

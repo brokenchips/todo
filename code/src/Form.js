@@ -32,7 +32,8 @@ class Form extends Component {
      */
     formValidate(event) {
         var wsSuccess;
-        if( this.inputMessage.current.value === '' ) {
+        if( this.inputMessage.current.value.trim() === '' ) {
+            debugger;
             this.setState({
                 messageErrorClass: 'mandatory-field-error',
                 formValidate: false
@@ -44,15 +45,17 @@ class Form extends Component {
             });
             wsSuccess = this.props.setMessage(this.inputMessage.current.value);
         }
-        wsSuccess.then(results => {
-            this.setState({
-                messageSent: true
-            });
-        }).catch(error => {
-            this.setState({
-                sendError: true
-            });
-        });
+        if (wsSuccess != undefined) {
+            wsSuccess.then(results => {
+                this.setState({
+                    messageSent: true
+                });
+            }).catch(error => {
+                this.setState({
+                    sendError: true
+                });
+            });    
+        }
         event.preventDefault();
     }
 
