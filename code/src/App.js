@@ -35,9 +35,12 @@ class App extends Component {
 						"Content-Type": "application/json"
 				}
 			}).then(response => {
-				return response.text();
+				if (response.ok) {
+          return response.text();
+				} else {
+					throw new Error('Si è verificato un problema con la richiesta');
+				}
 			}).then(results => {
-				debugger;
 				var responseData = JSON.parse(results);
 				if (responseData.status === "OK") {
 					var data = responseData.todo.data;
@@ -47,10 +50,9 @@ class App extends Component {
 					});	
 				}
 			}).catch(error => {
-				debugger;
 				this.setState({
 					ready: false,
-					todos : undefined
+					todos : 'no-content'
 			});	
 				// throw new Error(error);
 		});
@@ -59,26 +61,32 @@ class App extends Component {
 	
 	/**
   * @desc Create Message: saves a new todo.
+  * @return boolean success.
   */
  createMessage = function(message){
-			
-		var _message = escape(message);
+		  var _message = escape(message);
 			var requestBody = "message=" + _message;
 			var _this = this;
-			fetch('http://localhost:3333/save', {
-			 method: 'POST',
-			headers: {
-				'Content-Type': 'application/x-www-form-urlencoded'
-			},
-			body:requestBody
-	}).then(results => {
-		_this.fetchData();
-	}).catch(error => {
-		throw new Error(error);
-	})
+			var call = fetch('http://localhost:3333/save', {
+			    method: 'POST',
+			    headers: {
+				     'Content-Type': 'application/x-www-form-urlencoded'
+			    },
+			    body:requestBody
+	    		}).then(results => {
+						if (results.ok) {
+							_this.fetchData();
+						} else {
+							throw new Error('Si è verificato un problema con la richiesta');
+						}
+    			}).catch(error => {
+						throw new Error(error);
+		  });
+			return call;
 	}
 
 	render() {
+
 		if (this.state.ready){
 			return (
 				<div className="App">
@@ -89,16 +97,32 @@ class App extends Component {
 				</div>
 			);
 				
-		} else {
+		} else if (this.state.todos==="no-content") {
 			return (
 				<div className="App">
 				<div className="error">
-					Collegamento non disponibile, riprovare più tardi 
+					Al momento il web service non è disponibile.<br />
+          Verifica che il server sia correttamente avviato e prova a ricaricare la pagina.<br /><br />
+          Se il server non è avviato:<br />
+					<br />
+					1.<br />entra nella cartella "src"<br /><br />
+					2.<br />esegui il comando: <code> node Server.js </code><br /><br />
+					3.<br />ricarica questa pagina
 					</div>
 				</div>
 
 			);
 	
+		} else {
+			return (
+				<div className="App">
+				<div className="error">
+					Loading
+				</div>
+				</div>
+
+			);
+			
 		}
 	}
 }
