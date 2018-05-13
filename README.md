@@ -1,6 +1,6 @@
 README
 
-Istruzioni
+Istruzioni<br />
 per testare il progetto è necessario avere installato nodejs
 
 
@@ -10,6 +10,7 @@ per testare il progetto è necessario avere installato nodejs
 
 - installare le dipendenze e creare la build
 
+  > cd todo/code/<br />
   > npm install<br />
   > npm run build
 
@@ -37,7 +38,7 @@ il progetto è bootstrappato con create-react-app
 BACKEND
 ***/
 
-il server è in code/Server.js
+il server è in code/Server.js<br />
 Una volta lanciato con:
 
   > node Server.js
@@ -47,7 +48,7 @@ resterà in ascolto sulla porta 3333
 
 * GET
 
-non richiede parametri
+non richiede parametri<br />
 restituisce uno status di esito ed un oggetto contenente i dati riguardanti il servizio
 
 url: http://localhost:3333/data/

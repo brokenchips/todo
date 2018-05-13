@@ -43,7 +43,7 @@ class Form extends Component {
                 messageErrorClass: '',
                 formValidate: true
             });
-            wsSuccess = this.props.setMessage(this.inputMessage.current.value);
+            wsSuccess = this.props.setMessage(this.inputMessage.current.value.trim());
         }
         if (wsSuccess != undefined) {
             wsSuccess.then(results => {
