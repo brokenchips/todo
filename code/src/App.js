@@ -37,6 +37,7 @@ class App extends Component {
 			}).then(response => {
 				return response.text();
 			}).then(results => {
+				debugger;
 				var responseData = JSON.parse(results);
 				if (responseData.status === "OK") {
 					var data = responseData.todo.data;
@@ -46,7 +47,12 @@ class App extends Component {
 					});	
 				}
 			}).catch(error => {
-				throw new Error(error);
+				debugger;
+				this.setState({
+					ready: false,
+					todos : undefined
+			});	
+				// throw new Error(error);
 		});
  
 	}
@@ -73,14 +79,27 @@ class App extends Component {
 	}
 
 	render() {
-		return (
-			<div className="App">
-				<Form
-				setMessage = {this.createMessage} />
-				<Table
-				todos = {this.state.todos} />
-			</div>
-		);
+		if (this.state.ready){
+			return (
+				<div className="App">
+					<Form
+					setMessage = {this.createMessage} />
+					<Table
+					todos = {this.state.todos} />
+				</div>
+			);
+				
+		} else {
+			return (
+				<div className="App">
+				<div className="error">
+					Collegamento non disponibile, riprovare più tardi 
+					</div>
+				</div>
+
+			);
+	
+		}
 	}
 }
 
