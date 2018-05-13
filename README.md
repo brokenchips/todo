@@ -46,8 +46,7 @@ Si metterà inascolto sulla porta 3333
 non richiede parametri
 restituisce uno status di esito ed un oggetto contenente i dati riguardanti il servizio
 
-url:
-http://localhost:3333/data/
+url: http://localhost:3333/data/
 
 example response: 
 <pre>
@@ -75,14 +74,14 @@ example response:
 riceve un parametro "message" che contiene testo encodato
 restituisce uno status di esito ed un messaggio di dettaglio riguardante l'operazione di salvataggio
 
-url:
-http://localhost:3333/save/
+url: http://localhost:3333/save/
 
-example request params:
-message=test%20message
+example request params: "message=test%20message"
 
 example response: 
+<pre>
 {
   "status":"OK",
   "message":"Data saved test message"
 }
+</pre>
